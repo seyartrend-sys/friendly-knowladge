@@ -5,7 +5,7 @@ services:
     plan: free
     region: frankfurt
     autoDeploy: true
-    buildCommand: corepack enable && pnpm install --frozen-lockfile && pnpm build
+    buildCommand: npm install --global corepack@latest && corepack enable && pnpm install --frozen-lockfile && pnpm build
     startCommand: pnpm db:migrate && pnpm db:seed && pnpm start
     healthCheckPath: /api/health
     envVars:
