@@ -30,12 +30,13 @@ CREATE TABLE IF NOT EXISTS notes (
   created_at timestamptz NOT NULL DEFAULT now(),
   updated_at timestamptz NOT NULL DEFAULT now(),
   search_vector tsvector GENERATED ALWAYS AS (
-    to_tsvector(
-      'simple',
-      coalesce(title, '') || ' ' || coalesce(content, '') || ' ' ||
-      coalesce(summary, '') || ' ' || array_to_string(tags, ' ')
-    )
-  ) STORED
+  to_tsvector(
+    'simple',
+    coalesce(title, '') || ' ' || coalesce(content, '') || ' ' ||
+    coalesce(summary, '')
+  )
+) STORED
+
 );
 
 CREATE TABLE IF NOT EXISTS sources (
